@@ -1455,6 +1455,7 @@ const PDFViewerApplication = {
     this._initializePageLabels(pdfDocument);
 
     this._initializeMetadata(pdfDocument);
+    window.parent.postMessage("pdfloaded", "*");
   },
 
   async _scriptingDocProperties(pdfDocument) {
@@ -2166,7 +2167,12 @@ const PDFViewerApplication = {
 exports.PDFViewerApplication = PDFViewerApplication;
 let validateFileURL;
 {
-  const HOSTED_VIEWER_ORIGINS = ["null", "http://mozilla.github.io", "https://mozilla.github.io"];
+  const HOSTED_VIEWER_ORIGINS = [
+    "null",
+    "https://qa1.idatagenie.com",
+    "https://stage.idatagenie.com",
+    "https://app.needl.ai/"
+  ];
 
   validateFileURL = function (file) {
     if (file === undefined) {
